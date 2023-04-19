@@ -1,0 +1,25 @@
+openapi: 3.0.0
+
+paths:
+  /hello:
+    get:
+      security:
+        - api_key: []
+      x-amazon-apigateway-integration:
+        type: mock
+        responses:
+          default:
+            statusCode: 200
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: when_no_match
+      responses:
+        '200':
+          description: OK
+
+components:
+  securitySchemes:
+    api_key:
+      type: apiKey
+      name: x-api-key
+      in: header
